@@ -1,4 +1,4 @@
-# @fabra/sdk
+# Fabra Typescript SDK
 
 <!-- Start SDK Installation -->
 ## SDK Installation
