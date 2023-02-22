@@ -1,0 +1,5 @@
+typescript:
+    version: 0.0.0
+    packagename: '@fabra/sdk'
+    author: fabra
+sdkclassname: fabra
