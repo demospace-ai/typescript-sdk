@@ -11,3 +11,11 @@ Based on:
 Based on:
 - OpenAPI Doc 0.1.0 ./openapi.yaml
 - Speakeasy CLI 1.4.8 https://github.com/speakeasy-api/speakeasy
+
+## Version 0.1.3
+### Changes
+Based on:
+- OpenAPI Doc 0.1.0 ./openapi.yaml
+- Speakeasy CLI 1.4.9 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [NPM v0.1.3] https://www.npmjs.com/package/@fabra/sdk/v/0.1.3 - ./
