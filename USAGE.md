@@ -1,16 +1,20 @@
 <!-- Start SDK Example Usage -->
 ```typescript
-import { Fabra, withSecurity} from "@fabra/sdk";
-import { GetNamespacesRequest, GetNamespacesResponse } from "@fabra/sdk/src/sdk/models/operations";
-import { AxiosError } from "axios";
+import {
+  GetNamespacesRequest,
+  GetNamespacesResponse 
+} from "@fabra/sdk/dist/sdk/models/operations";
 
-const sdk = new Fabra(withSecurity(
+import { AxiosError } from "axios";
+import { Fabra } from "@fabra/sdk";
+
+const sdk = new Fabra({
   security: {
     apiKeyAuth: {
       apiKey: "YOUR_API_KEY_HERE",
     },
   }
-));
+});
     
 const req: GetNamespacesRequest = {
   queryParams: {
