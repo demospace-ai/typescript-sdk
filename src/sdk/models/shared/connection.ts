@@ -1,11 +1,14 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ConnectionTypeEnum } from "./connectiontypeenum";
+import { Expose } from "class-transformer";
 
 
 export class Connection extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=connection_type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "connection_type" })
   connectionType?: ConnectionTypeEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id?: number;
 }

@@ -1,17 +1,23 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Connection } from "./connection";
+import { Expose, Type } from "class-transformer";
 
 
 export class Source extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=connection" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "connection" })
+  @Type(() => Connection)
   connection?: Connection;
 
-  @SpeakeasyMetadata({ data: "json, name=display_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "display_name" })
   displayName?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=end_customer_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "end_customer_id" })
   endCustomerId?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id?: number;
 }

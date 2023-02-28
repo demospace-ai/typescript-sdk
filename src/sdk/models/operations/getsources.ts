@@ -1,9 +1,12 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
+import { Expose, Type } from "class-transformer";
 
 
 export class GetSources200ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=sources", elemType: shared.Source })
+  @SpeakeasyMetadata({ elemType: shared.Source })
+  @Expose({ name: "sources" })
+  @Type(() => shared.Source)
   sources?: shared.Source[];
 }
 

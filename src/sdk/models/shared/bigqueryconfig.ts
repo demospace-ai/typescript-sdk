@@ -1,10 +1,13 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class BigQueryConfig extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=credentials" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "credentials" })
   credentials?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=location" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "location" })
   location: string;
 }

@@ -1,4 +1,5 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Type } from "class-transformer";
 
 
 export class GetTablesQueryParams extends SpeakeasyBase {
@@ -15,7 +16,8 @@ export class GetTablesRequest extends SpeakeasyBase {
 }
 
 export class GetTables200ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=tables" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "tables" })
   tables?: string[];
 }
 

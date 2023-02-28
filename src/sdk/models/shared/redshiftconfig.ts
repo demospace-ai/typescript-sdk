@@ -1,19 +1,25 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class RedshiftConfig extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=database_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "database_name" })
   databaseName: string;
 
-  @SpeakeasyMetadata({ data: "json, name=host" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "host" })
   host: string;
 
-  @SpeakeasyMetadata({ data: "json, name=password" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "password" })
   password: string;
 
-  @SpeakeasyMetadata({ data: "json, name=port" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "port" })
   port: string;
 
-  @SpeakeasyMetadata({ data: "json, name=username" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "username" })
   username: string;
 }

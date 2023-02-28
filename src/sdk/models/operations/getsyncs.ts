@@ -1,9 +1,12 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
+import { Expose, Type } from "class-transformer";
 
 
 export class GetSyncs200ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=syncs", elemType: shared.Sync })
+  @SpeakeasyMetadata({ elemType: shared.Sync })
+  @Expose({ name: "syncs" })
+  @Type(() => shared.Sync)
   syncs?: shared.Sync[];
 }
 

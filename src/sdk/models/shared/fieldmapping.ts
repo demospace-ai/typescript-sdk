@@ -1,10 +1,13 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class FieldMapping extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=destination_field_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "destination_field_name" })
   destinationFieldName?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=source_field_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source_field_name" })
   sourceFieldName?: string;
 }

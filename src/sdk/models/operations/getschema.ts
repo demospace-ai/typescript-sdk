@@ -1,5 +1,6 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
+import { Expose, Type } from "class-transformer";
 
 
 export class GetSchemaQueryParams extends SpeakeasyBase {
@@ -19,7 +20,9 @@ export class GetSchemaRequest extends SpeakeasyBase {
 }
 
 export class GetSchema200ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=schema", elemType: shared.ColumnSchema })
+  @SpeakeasyMetadata({ elemType: shared.ColumnSchema })
+  @Expose({ name: "schema" })
+  @Type(() => shared.ColumnSchema)
   schema?: shared.ColumnSchema[];
 }
 
