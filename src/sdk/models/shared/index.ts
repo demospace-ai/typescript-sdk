@@ -2,6 +2,8 @@ export * from "./bigqueryconfig";
 export * from "./columnschema";
 export * from "./connection";
 export * from "./connectiontypeenum";
+export * from "./createlinktokenrequest";
+export * from "./createlinktokenresponse";
 export * from "./destination";
 export * from "./destinationinput";
 export * from "./fieldmapping";

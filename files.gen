@@ -1,5 +1,6 @@
 src/sdk/connection.ts
 src/sdk/destination.ts
+src/sdk/linktoken.ts
 src/sdk/object.ts
 src/sdk/source.ts
 src/sdk/sync.ts
@@ -24,6 +25,7 @@ src/sdk/models/operations/getschema.ts
 src/sdk/models/operations/gettables.ts
 src/sdk/models/operations/createdestination.ts
 src/sdk/models/operations/getdestinations.ts
+src/sdk/models/operations/createlinktoken.ts
 src/sdk/models/operations/createobject.ts
 src/sdk/models/operations/getobjects.ts
 src/sdk/models/operations/createsource.ts
@@ -41,6 +43,8 @@ src/sdk/models/shared/snowflakeconfig.ts
 src/sdk/models/shared/redshiftconfig.ts
 src/sdk/models/shared/mongodbconfig.ts
 src/sdk/models/shared/bigqueryconfig.ts
+src/sdk/models/shared/createlinktokenresponse.ts
+src/sdk/models/shared/createlinktokenrequest.ts
 src/sdk/models/shared/object.ts
 src/sdk/models/shared/objectfield.ts
 src/sdk/models/shared/objectinput.ts

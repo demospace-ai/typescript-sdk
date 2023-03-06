@@ -1,6 +1,7 @@
 import * as utils from "../internal/utils";
 import { Connection } from "./connection";
 import { Destination } from "./destination";
+import { LinkToken } from "./linktoken";
 import * as shared from "./models/shared";
 import { ObjectT } from "./object";
 import { Source } from "./source";
@@ -25,6 +26,7 @@ export type SDKProps = {
 export class Fabra {
   public connection: Connection;
   public destination: Destination;
+  public linkToken: LinkToken;
   public object: ObjectT;
   public source: Source;
   public sync: Sync;
@@ -33,8 +35,8 @@ export class Fabra {
   public _securityClient: AxiosInstance;
   public _serverURL: string;
   private _language = "typescript";
-  private _sdkVersion = "0.5.1";
-  private _genVersion = "1.8.4";
+  private _sdkVersion = "0.5.2";
+  private _genVersion = "1.8.5";
 
   constructor(props: SDKProps) {
     this._serverURL = props.serverUrl ?? ServerList[0];
@@ -62,6 +64,15 @@ export class Fabra {
     );
     
     this.destination = new Destination(
+      this._defaultClient,
+      this._securityClient,
+      this._serverURL,
+      this._language,
+      this._sdkVersion,
+      this._genVersion
+    );
+    
+    this.linkToken = new LinkToken(
       this._defaultClient,
       this._securityClient,
       this._serverURL,

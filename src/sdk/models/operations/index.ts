@@ -1,4 +1,5 @@
 export * from "./createdestination";
+export * from "./createlinktoken";
 export * from "./createobject";
 export * from "./createsource";
 export * from "./createsync";
