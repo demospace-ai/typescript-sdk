@@ -1,4 +1,6 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { AxiosResponse } from "axios";
+import { Expose, Type } from "class-transformer";
 
 
 export class GetTablesQueryParams extends SpeakeasyBase {
@@ -15,7 +17,8 @@ export class GetTablesRequest extends SpeakeasyBase {
 }
 
 export class GetTables200ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=tables" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "tables" })
   tables?: string[];
 }
 
@@ -25,6 +28,9 @@ export class GetTablesResponse extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   statusCode: number;
+
+  @SpeakeasyMetadata()
+  rawResponse?: AxiosResponse;
 
   @SpeakeasyMetadata()
   getTables200ApplicationJSONObject?: GetTables200ApplicationJSON;

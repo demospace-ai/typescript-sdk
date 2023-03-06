@@ -1,16 +1,21 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class MongoDbConfig extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=connection_options" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "connection_options" })
   connectionOptions?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=host" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "host" })
   host: string;
 
-  @SpeakeasyMetadata({ data: "json, name=password" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "password" })
   password: string;
 
-  @SpeakeasyMetadata({ data: "json, name=username" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "username" })
   username: string;
 }

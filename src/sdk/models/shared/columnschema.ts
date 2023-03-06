@@ -1,11 +1,14 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { FieldTypeEnum } from "./fieldtypeenum";
+import { Expose } from "class-transformer";
 
 
 export class ColumnSchema extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "type" })
   type?: FieldTypeEnum;
 }

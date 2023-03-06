@@ -1,6 +1,7 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class ObjectT {
   _defaultClient: AxiosInstance;
@@ -60,11 +61,15 @@ export class ObjectT {
         const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.CreateObjectResponse = {statusCode: httpRes.status, contentType: contentType};
+        const res: operations.CreateObjectResponse = {statusCode: httpRes.status, contentType: contentType, rawResponse: httpRes};
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.createObject200ApplicationJSONObject = httpRes?.data;
+              res.createObject200ApplicationJSONObject = plainToInstance(
+                operations.CreateObject200ApplicationJSON,
+                httpRes?.data as operations.CreateObject200ApplicationJSON,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 401:
@@ -100,11 +105,15 @@ export class ObjectT {
         const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.GetObjectsResponse = {statusCode: httpRes.status, contentType: contentType};
+        const res: operations.GetObjectsResponse = {statusCode: httpRes.status, contentType: contentType, rawResponse: httpRes};
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getObjects200ApplicationJSONObject = httpRes?.data;
+              res.getObjects200ApplicationJSONObject = plainToInstance(
+                operations.GetObjects200ApplicationJSON,
+                httpRes?.data as operations.GetObjects200ApplicationJSON,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 401:

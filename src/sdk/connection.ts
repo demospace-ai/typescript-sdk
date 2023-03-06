@@ -1,6 +1,7 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class Connection {
   _defaultClient: AxiosInstance;
@@ -35,30 +36,27 @@ export class Connection {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
         const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.GetNamespacesResponse = {statusCode: httpRes.status, contentType: contentType};
+        const res: operations.GetNamespacesResponse = {statusCode: httpRes.status, contentType: contentType, rawResponse: httpRes};
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getNamespaces200ApplicationJSONObject = httpRes?.data;
+              res.getNamespaces200ApplicationJSONObject = plainToInstance(
+                operations.GetNamespaces200ApplicationJSON,
+                httpRes?.data as operations.GetNamespaces200ApplicationJSON,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 401:
@@ -88,30 +86,27 @@ export class Connection {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
         const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.GetSchemaResponse = {statusCode: httpRes.status, contentType: contentType};
+        const res: operations.GetSchemaResponse = {statusCode: httpRes.status, contentType: contentType, rawResponse: httpRes};
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getSchema200ApplicationJSONObject = httpRes?.data;
+              res.getSchema200ApplicationJSONObject = plainToInstance(
+                operations.GetSchema200ApplicationJSON,
+                httpRes?.data as operations.GetSchema200ApplicationJSON,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 401:
@@ -141,30 +136,27 @@ export class Connection {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
         const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.GetTablesResponse = {statusCode: httpRes.status, contentType: contentType};
+        const res: operations.GetTablesResponse = {statusCode: httpRes.status, contentType: contentType, rawResponse: httpRes};
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getTables200ApplicationJSONObject = httpRes?.data;
+              res.getTables200ApplicationJSONObject = plainToInstance(
+                operations.GetTables200ApplicationJSON,
+                httpRes?.data as operations.GetTables200ApplicationJSON,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 401:

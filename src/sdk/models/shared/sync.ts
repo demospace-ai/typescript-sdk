@@ -1,45 +1,60 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { FieldMapping } from "./fieldmapping";
 import { FrequencyUnitsEnum } from "./frequencyunitsenum";
+import { Expose, Type } from "class-transformer";
 
 
 export class Sync extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=cursor_field" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "cursor_field" })
   cursorField?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=custom_join" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "custom_join" })
   customJoin?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=destination_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "destination_id" })
   destinationId?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=display_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "display_name" })
   displayName?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=field_mappings", elemType: FieldMapping })
+  @SpeakeasyMetadata({ elemType: FieldMapping })
+  @Expose({ name: "field_mappings" })
+  @Type(() => FieldMapping)
   fieldMappings?: FieldMapping[];
 
-  @SpeakeasyMetadata({ data: "json, name=frequency" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "frequency" })
   frequency?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=frequency_units" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "frequency_units" })
   frequencyUnits?: FrequencyUnitsEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=namespace" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "namespace" })
   namespace?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=object_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "object_id" })
   objectId?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=primary_key" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "primary_key" })
   primaryKey?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=source_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source_id" })
   sourceId?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=table_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "table_name" })
   tableName?: string;
 }

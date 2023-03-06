@@ -1,4 +1,6 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { AxiosResponse } from "axios";
+import { Expose, Type } from "class-transformer";
 
 
 export class GetNamespacesQueryParams extends SpeakeasyBase {
@@ -12,7 +14,8 @@ export class GetNamespacesRequest extends SpeakeasyBase {
 }
 
 export class GetNamespaces200ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=namespaces" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "namespaces" })
   namespaces?: string[];
 }
 
@@ -22,6 +25,9 @@ export class GetNamespacesResponse extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   statusCode: number;
+
+  @SpeakeasyMetadata()
+  rawResponse?: AxiosResponse;
 
   @SpeakeasyMetadata()
   getNamespaces200ApplicationJSONObject?: GetNamespaces200ApplicationJSON;

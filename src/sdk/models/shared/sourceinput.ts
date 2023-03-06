@@ -4,27 +4,39 @@ import { ConnectionTypeEnum } from "./connectiontypeenum";
 import { MongoDbConfig } from "./mongodbconfig";
 import { RedshiftConfig } from "./redshiftconfig";
 import { SnowflakeConfig } from "./snowflakeconfig";
+import { Expose, Type } from "class-transformer";
 
 
 export class SourceInput extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=bigquery_config" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "bigquery_config" })
+  @Type(() => BigQueryConfig)
   bigqueryConfig?: BigQueryConfig;
 
-  @SpeakeasyMetadata({ data: "json, name=connection_type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "connection_type" })
   connectionType: ConnectionTypeEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=display_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "display_name" })
   displayName: string;
 
-  @SpeakeasyMetadata({ data: "json, name=end_customer_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "end_customer_id" })
   endCustomerId: number;
 
-  @SpeakeasyMetadata({ data: "json, name=mongodb_config" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "mongodb_config" })
+  @Type(() => MongoDbConfig)
   mongodbConfig?: MongoDbConfig;
 
-  @SpeakeasyMetadata({ data: "json, name=redshift_config" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "redshift_config" })
+  @Type(() => RedshiftConfig)
   redshiftConfig?: RedshiftConfig;
 
-  @SpeakeasyMetadata({ data: "json, name=snowflake_config" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "snowflake_config" })
+  @Type(() => SnowflakeConfig)
   snowflakeConfig?: SnowflakeConfig;
 }

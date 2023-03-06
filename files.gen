@@ -4,6 +4,7 @@ src/sdk/object.ts
 src/sdk/source.ts
 src/sdk/sync.ts
 src/sdk/sdk.ts
+jest.config.js
 package-lock.json
 package.json
 src/index.ts

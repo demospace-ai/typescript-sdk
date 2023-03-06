@@ -1,6 +1,7 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class Destination {
   _defaultClient: AxiosInstance;
@@ -60,11 +61,15 @@ export class Destination {
         const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.CreateDestinationResponse = {statusCode: httpRes.status, contentType: contentType};
+        const res: operations.CreateDestinationResponse = {statusCode: httpRes.status, contentType: contentType, rawResponse: httpRes};
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.createDestination200ApplicationJSONObject = httpRes?.data;
+              res.createDestination200ApplicationJSONObject = plainToInstance(
+                operations.CreateDestination200ApplicationJSON,
+                httpRes?.data as operations.CreateDestination200ApplicationJSON,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 401:
@@ -100,11 +105,15 @@ export class Destination {
         const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.GetDestinationsResponse = {statusCode: httpRes.status, contentType: contentType};
+        const res: operations.GetDestinationsResponse = {statusCode: httpRes.status, contentType: contentType, rawResponse: httpRes};
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getDestinations200ApplicationJSONObject = httpRes?.data;
+              res.getDestinations200ApplicationJSONObject = plainToInstance(
+                operations.GetDestinations200ApplicationJSON,
+                httpRes?.data as operations.GetDestinations200ApplicationJSON,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 401:

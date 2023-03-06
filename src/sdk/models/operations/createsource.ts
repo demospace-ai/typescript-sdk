@@ -1,5 +1,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
+import { AxiosResponse } from "axios";
+import { Expose, Type } from "class-transformer";
 
 
 export class CreateSourceRequest extends SpeakeasyBase {
@@ -8,7 +10,9 @@ export class CreateSourceRequest extends SpeakeasyBase {
 }
 
 export class CreateSource200ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=source" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source" })
+  @Type(() => shared.Source)
   source?: shared.Source;
 }
 
@@ -18,6 +22,9 @@ export class CreateSourceResponse extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   statusCode: number;
+
+  @SpeakeasyMetadata()
+  rawResponse?: AxiosResponse;
 
   @SpeakeasyMetadata()
   createSource200ApplicationJSONObject?: CreateSource200ApplicationJSON;

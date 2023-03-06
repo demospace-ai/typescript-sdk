@@ -1,6 +1,7 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class Sync {
   _defaultClient: AxiosInstance;
@@ -60,11 +61,15 @@ export class Sync {
         const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.CreateSyncResponse = {statusCode: httpRes.status, contentType: contentType};
+        const res: operations.CreateSyncResponse = {statusCode: httpRes.status, contentType: contentType, rawResponse: httpRes};
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.createSync200ApplicationJSONObject = httpRes?.data;
+              res.createSync200ApplicationJSONObject = plainToInstance(
+                operations.CreateSync200ApplicationJSON,
+                httpRes?.data as operations.CreateSync200ApplicationJSON,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 401:
@@ -100,11 +105,15 @@ export class Sync {
         const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.GetSyncsResponse = {statusCode: httpRes.status, contentType: contentType};
+        const res: operations.GetSyncsResponse = {statusCode: httpRes.status, contentType: contentType, rawResponse: httpRes};
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getSyncs200ApplicationJSONObject = httpRes?.data;
+              res.getSyncs200ApplicationJSONObject = plainToInstance(
+                operations.GetSyncs200ApplicationJSON,
+                httpRes?.data as operations.GetSyncs200ApplicationJSON,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 401:

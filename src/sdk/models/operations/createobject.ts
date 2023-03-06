@@ -1,5 +1,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
+import { AxiosResponse } from "axios";
+import { Expose, Type } from "class-transformer";
 
 
 export class CreateObjectRequest extends SpeakeasyBase {
@@ -8,7 +10,9 @@ export class CreateObjectRequest extends SpeakeasyBase {
 }
 
 export class CreateObject200ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=object" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "object" })
+  @Type(() => shared.ObjectT)
   object?: shared.ObjectT;
 }
 
@@ -18,6 +22,9 @@ export class CreateObjectResponse extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   statusCode: number;
+
+  @SpeakeasyMetadata()
+  rawResponse?: AxiosResponse;
 
   @SpeakeasyMetadata()
   createObject200ApplicationJSONObject?: CreateObject200ApplicationJSON;

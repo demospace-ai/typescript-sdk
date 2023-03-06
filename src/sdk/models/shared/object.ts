@@ -1,26 +1,35 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ObjectField } from "./objectfield";
+import { Expose, Type } from "class-transformer";
 
 
 export class ObjectT extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=customer_id_column" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "customer_id_column" })
   customerIdColumn?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=destination_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "destination_id" })
   destinationId?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=display_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "display_name" })
   displayName?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=namespace" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "namespace" })
   namespace?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=object_fields", elemType: ObjectField })
+  @SpeakeasyMetadata({ elemType: ObjectField })
+  @Expose({ name: "object_fields" })
+  @Type(() => ObjectField)
   objectFields?: ObjectField[];
 
-  @SpeakeasyMetadata({ data: "json, name=table_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "table_name" })
   tableName?: string;
 }
