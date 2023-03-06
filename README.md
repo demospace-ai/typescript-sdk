@@ -68,6 +68,10 @@ sdk.connection.getNamespaces(req).then((res: GetNamespacesResponse | AxiosError)
 * `createDestination` - Create a new destination
 * `getDestinations` - Get all destinations
 
+### linkToken
+
+* `createLinkToken` - Create a new link token
+
 ### object
 
 * `createObject` - Create a new object

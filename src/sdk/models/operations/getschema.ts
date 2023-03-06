@@ -11,7 +11,7 @@ export class GetSchemaQueryParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=namespace" })
   namespace: string;
 
-  @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=table_name" })
+  @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=tableName" })
   tableName: string;
 }
 
