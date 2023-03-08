@@ -35,8 +35,8 @@ export class Fabra {
   public _securityClient: AxiosInstance;
   public _serverURL: string;
   private _language = "typescript";
-  private _sdkVersion = "0.5.2";
-  private _genVersion = "1.8.5";
+  private _sdkVersion = "0.5.3";
+  private _genVersion = "1.8.6";
 
   constructor(props: SDKProps) {
     this._serverURL = props.serverUrl ?? ServerList[0];
