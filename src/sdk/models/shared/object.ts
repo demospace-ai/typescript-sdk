@@ -2,7 +2,6 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ObjectField } from "./objectfield";
 import { Expose, Type } from "class-transformer";
 
-
 export class ObjectT extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "destination_id" })

@@ -3,15 +3,20 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
-
 export class GetSchemaQueryParams extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=connectionID" })
+  @SpeakeasyMetadata({
+    data: "queryParam, style=form;explode=true;name=connectionID",
+  })
   connectionID: number;
 
-  @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=namespace" })
+  @SpeakeasyMetadata({
+    data: "queryParam, style=form;explode=true;name=namespace",
+  })
   namespace: string;
 
-  @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=tableName" })
+  @SpeakeasyMetadata({
+    data: "queryParam, style=form;explode=true;name=tableName",
+  })
   tableName: string;
 }
 

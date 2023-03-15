@@ -3,7 +3,6 @@ import { FieldMapping } from "./fieldmapping";
 import { FrequencyUnitsEnum } from "./frequencyunitsenum";
 import { Expose, Type } from "class-transformer";
 
-
 export class SyncInput extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "cursor_field" })

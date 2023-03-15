@@ -2,7 +2,6 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Connection } from "./connection";
 import { Expose, Type } from "class-transformer";
 
-
 export class Destination extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "connection" })

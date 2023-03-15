@@ -2,9 +2,10 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
-
 export class GetNamespacesQueryParams extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=connectionID" })
+  @SpeakeasyMetadata({
+    data: "queryParam, style=form;explode=true;name=connectionID",
+  })
   connectionID: number;
 }
 

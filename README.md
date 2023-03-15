@@ -32,13 +32,12 @@ import {
 
 import { AxiosError } from "axios";
 import { Fabra } from "@fabra/sdk";
-
 const sdk = new Fabra({
   security: {
     apiKeyAuth: {
       apiKey: "YOUR_API_KEY_HERE",
     },
-  }
+  },
 });
     
 const req: GetNamespacesRequest = {

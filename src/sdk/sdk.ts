@@ -8,20 +8,13 @@ import { Source } from "./source";
 import { Sync } from "./sync";
 import axios, { AxiosInstance } from "axios";
 
-export const ServerList = [
-	"https://api.fabra.io",
-] as const;
-
-
+export const ServerList = ["https://api.fabra.io"] as const;
 
 export type SDKProps = {
-  defaultClient?: AxiosInstance;
-
   security?: shared.Security;
-
+  defaultClient?: AxiosInstance;
   serverUrl?: string;
-}
-
+};
 
 export class Fabra {
   public connection: Connection;
@@ -35,13 +28,15 @@ export class Fabra {
   public _securityClient: AxiosInstance;
   public _serverURL: string;
   private _language = "typescript";
-  private _sdkVersion = "0.6.2";
-  private _genVersion = "1.9.2";
+  private _sdkVersion = "0.7.0";
+  private _genVersion = "1.11.0";
+  private _globals: any;
 
   constructor(props?: SDKProps) {
     this._serverURL = props?.serverUrl ?? ServerList[0];
 
-    this._defaultClient = props?.defaultClient ?? axios.create({ baseURL: this._serverURL });
+    this._defaultClient =
+      props?.defaultClient ?? axios.create({ baseURL: this._serverURL });
     if (props?.security) {
       let security: shared.Security = props.security;
       if (!(props.security instanceof utils.SpeakeasyBase))
@@ -53,7 +48,7 @@ export class Fabra {
     } else {
       this._securityClient = this._defaultClient;
     }
-    
+
     this.connection = new Connection(
       this._defaultClient,
       this._securityClient,
@@ -62,7 +57,7 @@ export class Fabra {
       this._sdkVersion,
       this._genVersion
     );
-    
+
     this.destination = new Destination(
       this._defaultClient,
       this._securityClient,
@@ -71,7 +66,7 @@ export class Fabra {
       this._sdkVersion,
       this._genVersion
     );
-    
+
     this.linkToken = new LinkToken(
       this._defaultClient,
       this._securityClient,
@@ -80,7 +75,7 @@ export class Fabra {
       this._sdkVersion,
       this._genVersion
     );
-    
+
     this.object = new ObjectT(
       this._defaultClient,
       this._securityClient,
@@ -89,7 +84,7 @@ export class Fabra {
       this._sdkVersion,
       this._genVersion
     );
-    
+
     this.source = new Source(
       this._defaultClient,
       this._securityClient,
@@ -98,7 +93,7 @@ export class Fabra {
       this._sdkVersion,
       this._genVersion
     );
-    
+
     this.sync = new Sync(
       this._defaultClient,
       this._securityClient,
@@ -108,5 +103,4 @@ export class Fabra {
       this._genVersion
     );
   }
-  
 }

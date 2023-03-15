@@ -1,7 +1,6 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
-
 export class SnowflakeConfig extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "database_name" })

@@ -11,7 +11,14 @@ export class Destination {
   _sdkVersion: string;
   _genVersion: string;
 
-  constructor(defaultClient: AxiosInstance, securityClient: AxiosInstance, serverURL: string, language: string, sdkVersion: string, genVersion: string) {
+  constructor(
+    defaultClient: AxiosInstance,
+    securityClient: AxiosInstance,
+    serverURL: string,
+    language: string,
+    sdkVersion: string,
+    genVersion: string
+  ) {
     this._defaultClient = defaultClient;
     this._securityClient = securityClient;
     this._serverURL = serverURL;
@@ -19,10 +26,10 @@ export class Destination {
     this._sdkVersion = sdkVersion;
     this._genVersion = genVersion;
   }
-  
+
   /**
    * createDestination - Create a new destination
-  **/
+   **/
   createDestination(
     req: operations.CreateDestinationRequest,
     config?: AxiosRequestConfig
@@ -30,7 +37,7 @@ export class Destination {
     if (!(req instanceof utils.SpeakeasyBase)) {
       req = new operations.CreateDestinationRequest(req);
     }
-    
+
     const baseURL: string = this._serverURL;
     const url: string = baseURL.replace(/\/$/, "") + "/destination";
 
@@ -43,95 +50,93 @@ export class Destination {
         throw new Error(`Error serializing request body, cause: ${e.message}`);
       }
     }
-    
+
     const client: AxiosInstance = this._securityClient!;
-    
-    const headers = {...reqBodyHeaders, ...config?.headers};
-    if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
-    
+
+    const headers = { ...reqBodyHeaders, ...config?.headers };
+    if (reqBody == null || Object.keys(reqBody).length === 0)
+      throw new Error("request body is required");
+
     const r = client.request({
       url: url,
       method: "post",
       headers: headers,
-      data: reqBody, 
+      data: reqBody,
       ...config,
     });
-    
+
     return r.then((httpRes: AxiosResponse) => {
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.CreateDestinationResponse =
-            new operations.CreateDestinationResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes
-            });
-        switch (true) {
-          case httpRes?.status == 200:
-            if (utils.matchContentType(contentType, `application/json`)) {
-              res.createDestination200ApplicationJSONObject = utils.deserializeJSONResponse(
+      if (httpRes?.status == null)
+        throw new Error(`status code not found in response: ${httpRes}`);
+      const res: operations.CreateDestinationResponse =
+        new operations.CreateDestinationResponse({
+          statusCode: httpRes.status,
+          contentType: contentType,
+          rawResponse: httpRes,
+        });
+      switch (true) {
+        case httpRes?.status == 200:
+          if (utils.matchContentType(contentType, `application/json`)) {
+            res.createDestination200ApplicationJSONObject =
+              utils.deserializeJSONResponse(
                 httpRes?.data,
-                operations.CreateDestination200ApplicationJSON,
+                operations.CreateDestination200ApplicationJSON
               );
-            }
-            break;
-          case httpRes?.status == 401:
-            break;
-          case httpRes?.status == 500:
-            break;
-        }
+          }
+          break;
+        case [401, 500].includes(httpRes?.status):
+          break;
+      }
 
-        return res;
-      })
+      return res;
+    });
   }
 
-  
   /**
    * getDestinations - Get all destinations
-  **/
+   **/
   getDestinations(
     config?: AxiosRequestConfig
   ): Promise<operations.GetDestinationsResponse> {
     const baseURL: string = this._serverURL;
     const url: string = baseURL.replace(/\/$/, "") + "/destinations";
-    
+
     const client: AxiosInstance = this._securityClient!;
-    
-    
+
     const r = client.request({
       url: url,
       method: "get",
       ...config,
     });
-    
+
     return r.then((httpRes: AxiosResponse) => {
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.GetDestinationsResponse =
-            new operations.GetDestinationsResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes
-            });
-        switch (true) {
-          case httpRes?.status == 200:
-            if (utils.matchContentType(contentType, `application/json`)) {
-              res.getDestinations200ApplicationJSONObject = utils.deserializeJSONResponse(
+      if (httpRes?.status == null)
+        throw new Error(`status code not found in response: ${httpRes}`);
+      const res: operations.GetDestinationsResponse =
+        new operations.GetDestinationsResponse({
+          statusCode: httpRes.status,
+          contentType: contentType,
+          rawResponse: httpRes,
+        });
+      switch (true) {
+        case httpRes?.status == 200:
+          if (utils.matchContentType(contentType, `application/json`)) {
+            res.getDestinations200ApplicationJSONObject =
+              utils.deserializeJSONResponse(
                 httpRes?.data,
-                operations.GetDestinations200ApplicationJSON,
+                operations.GetDestinations200ApplicationJSON
               );
-            }
-            break;
-          case httpRes?.status == 401:
-            break;
-          case httpRes?.status == 500:
-            break;
-        }
+          }
+          break;
+        case [401, 500].includes(httpRes?.status):
+          break;
+      }
 
-        return res;
-      })
+      return res;
+    });
   }
-
 }

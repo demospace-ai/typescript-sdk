@@ -6,7 +6,6 @@ import { RedshiftConfig } from "./redshiftconfig";
 import { SnowflakeConfig } from "./snowflakeconfig";
 import { Expose, Type } from "class-transformer";
 
-
 export class DestinationInput extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "bigquery_config" })
