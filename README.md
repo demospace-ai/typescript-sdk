@@ -39,7 +39,7 @@ const sdk = new Fabra({
     },
   },
 });
-    
+
 const req: GetNamespacesRequest = {
   queryParams: {
     connectionID: 548814,
