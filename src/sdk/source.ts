@@ -1,6 +1,5 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
-import * as shared from "./models/shared";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { plainToInstance } from "class-transformer";
 
