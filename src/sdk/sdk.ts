@@ -36,6 +36,9 @@ export type SDKProps = {
 };
 
 export class Fabra {
+  /**
+   * Operations on connections
+   */
   public connection: Connection;
   /**
    * Operations on destinations
@@ -45,6 +48,9 @@ export class Fabra {
    * Operations on link tokens
    */
   public linkToken: LinkToken;
+  /**
+   * Operations on objects
+   */
   public object: ObjectT;
   /**
    * Operations on sources
@@ -59,8 +65,8 @@ export class Fabra {
   public _securityClient: AxiosInstance;
   public _serverURL: string;
   private _language = "typescript";
-  private _sdkVersion = "0.9.0";
-  private _genVersion = "2.12.10";
+  private _sdkVersion = "0.10.0";
+  private _genVersion = "2.13.1";
   private _globals: any;
 
   constructor(props?: SDKProps) {

@@ -3,8 +3,9 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import * as shared from "../shared";
 import { AxiosResponse } from "axios";
-import { Expose, Type } from "class-transformer";
+import { Type } from "class-transformer";
 
 export class GetNamespacesQueryParams extends SpeakeasyBase {
   @SpeakeasyMetadata({
@@ -18,28 +19,19 @@ export class GetNamespacesRequest extends SpeakeasyBase {
   queryParams: GetNamespacesQueryParams;
 }
 
-/**
- * Successfully fetched namespaces
- */
-export class GetNamespaces200ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "namespaces" })
-  namespaces?: string[];
-}
-
 export class GetNamespacesResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()
   contentType: string;
+
+  /**
+   * Successfully fetched namespaces
+   */
+  @SpeakeasyMetadata()
+  namespaces?: shared.Namespaces;
 
   @SpeakeasyMetadata()
   statusCode: number;
 
   @SpeakeasyMetadata()
   rawResponse?: AxiosResponse;
-
-  /**
-   * Successfully fetched namespaces
-   */
-  @SpeakeasyMetadata()
-  getNamespaces200ApplicationJSONObject?: GetNamespaces200ApplicationJSON;
 }

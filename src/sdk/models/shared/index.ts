@@ -14,6 +14,7 @@ export * from "./fieldmapping";
 export * from "./fieldtypeenum";
 export * from "./frequencyunitsenum";
 export * from "./mongodbconfig";
+export * from "./namespaces";
 export * from "./object";
 export * from "./objectfield";
 export * from "./objectinput";

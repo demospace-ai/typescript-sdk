@@ -4,8 +4,12 @@
 
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
+import * as shared from "./models/shared";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
+/**
+ * Operations on connections
+ */
 export class Connection {
   _defaultClient: AxiosInstance;
   _securityClient: AxiosInstance;
@@ -68,11 +72,10 @@ export class Connection {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.getNamespaces200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.GetNamespaces200ApplicationJSON
-              );
+            res.namespaces = utils.deserializeJSONResponse(
+              httpRes?.data,
+              shared.Namespaces
+            );
           }
           break;
         case [401, 500].includes(httpRes?.status):

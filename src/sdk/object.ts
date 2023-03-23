@@ -6,6 +6,9 @@ import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
+/**
+ * Operations on objects
+ */
 export class ObjectT {
   _defaultClient: AxiosInstance;
   _securityClient: AxiosInstance;

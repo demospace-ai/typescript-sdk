@@ -33,6 +33,7 @@ src/sdk/models/operations/getsources.ts
 src/sdk/models/operations/createsync.ts
 src/sdk/models/operations/getsyncs.ts
 src/sdk/models/operations/index.ts
+src/sdk/models/shared/namespaces.ts
 src/sdk/models/shared/field.ts
 src/sdk/models/shared/fieldtypeenum.ts
 src/sdk/models/shared/destination.ts
