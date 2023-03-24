@@ -12,13 +12,13 @@
 ### NPM
 
 ```bash
-npm add @fabra/sdk
+npm add <UNSET>
 ```
 
 ### Yarn
 
 ```bash
-yarn add @fabra/sdk
+yarn add <UNSET>
 ```
 <!-- End SDK Installation -->
 
