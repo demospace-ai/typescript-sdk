@@ -61,7 +61,7 @@ export class Sync {
       }
     }
 
-    const client: AxiosInstance = this._securityClient!;
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
     const headers = { ...reqBodyHeaders, ...config?.headers };
     if (reqBody == null || Object.keys(reqBody).length === 0)
@@ -111,7 +111,7 @@ export class Sync {
     const baseURL: string = this._serverURL;
     const url: string = baseURL.replace(/\/$/, "") + "/syncs";
 
-    const client: AxiosInstance = this._securityClient!;
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
     const r = client.request({
       url: url,

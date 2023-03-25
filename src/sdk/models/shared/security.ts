@@ -3,7 +3,6 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { Type } from "class-transformer";
 
 export class SchemeAPIKeyAuth extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "security, name=X-API-Key" })

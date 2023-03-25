@@ -48,7 +48,7 @@ export class Connection {
     const baseURL: string = this._serverURL;
     const url: string = baseURL.replace(/\/$/, "") + "/connection/namespaces";
 
-    const client: AxiosInstance = this._securityClient!;
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
     const queryParams: string = utils.serializeQueryParams(req.queryParams);
 
@@ -100,7 +100,7 @@ export class Connection {
     const baseURL: string = this._serverURL;
     const url: string = baseURL.replace(/\/$/, "") + "/connection/schema";
 
-    const client: AxiosInstance = this._securityClient!;
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
     const queryParams: string = utils.serializeQueryParams(req.queryParams);
 
@@ -153,7 +153,7 @@ export class Connection {
     const baseURL: string = this._serverURL;
     const url: string = baseURL.replace(/\/$/, "") + "/connection/tables";
 
-    const client: AxiosInstance = this._securityClient!;
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
     const queryParams: string = utils.serializeQueryParams(req.queryParams);
 
