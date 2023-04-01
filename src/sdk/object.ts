@@ -4,6 +4,7 @@
 
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
+import * as shared from "./models/shared";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 /**
@@ -37,11 +38,11 @@ export class ObjectT {
    * Create a new object
    */
   createObject(
-    req: operations.CreateObjectRequest,
+    req: shared.ObjectInput,
     config?: AxiosRequestConfig
   ): Promise<operations.CreateObjectResponse> {
     if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new operations.CreateObjectRequest(req);
+      req = new shared.ObjectInput(req);
     }
 
     const baseURL: string = this._serverURL;

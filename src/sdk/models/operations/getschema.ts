@@ -7,7 +7,7 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
-export class GetSchemaQueryParams extends SpeakeasyBase {
+export class GetSchemaRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({
     data: "queryParam, style=form;explode=true;name=connectionID",
   })
@@ -22,11 +22,6 @@ export class GetSchemaQueryParams extends SpeakeasyBase {
     data: "queryParam, style=form;explode=true;name=tableName",
   })
   tableName: string;
-}
-
-export class GetSchemaRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  queryParams: GetSchemaQueryParams;
 }
 
 /**

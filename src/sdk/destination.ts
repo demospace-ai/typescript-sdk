@@ -4,6 +4,7 @@
 
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
+import * as shared from "./models/shared";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 /**
@@ -37,11 +38,11 @@ export class Destination {
    * Create a new destination
    */
   createDestination(
-    req: operations.CreateDestinationRequest,
+    req: shared.DestinationInput,
     config?: AxiosRequestConfig
   ): Promise<operations.CreateDestinationResponse> {
     if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new operations.CreateDestinationRequest(req);
+      req = new shared.DestinationInput(req);
     }
 
     const baseURL: string = this._serverURL;

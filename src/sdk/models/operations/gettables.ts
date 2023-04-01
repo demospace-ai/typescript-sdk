@@ -6,7 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { AxiosResponse } from "axios";
 import { Expose } from "class-transformer";
 
-export class GetTablesQueryParams extends SpeakeasyBase {
+export class GetTablesRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({
     data: "queryParam, style=form;explode=true;name=connectionID",
   })
@@ -16,11 +16,6 @@ export class GetTablesQueryParams extends SpeakeasyBase {
     data: "queryParam, style=form;explode=true;name=namespace",
   })
   namespace: string;
-}
-
-export class GetTablesRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  queryParams: GetTablesQueryParams;
 }
 
 /**

@@ -38,11 +38,11 @@ export class LinkToken {
    * Create a new link token
    */
   createLinkToken(
-    req: operations.CreateLinkTokenRequest,
+    req: shared.CreateLinkTokenRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.CreateLinkTokenResponse> {
     if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new operations.CreateLinkTokenRequest(req);
+      req = new shared.CreateLinkTokenRequest(req);
     }
 
     const baseURL: string = this._serverURL;

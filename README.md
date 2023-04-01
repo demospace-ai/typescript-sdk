@@ -34,16 +34,12 @@ import { AxiosError } from "axios";
 import { Fabra } from "@fabra/sdk";
 const sdk = new Fabra({
   security: {
-    apiKeyAuth: {
-      apiKey: "YOUR_API_KEY_HERE",
-    },
+    apiKeyAuth: "YOUR_API_KEY_HERE",
   },
 });
 
 const req: GetNamespacesRequest = {
-  queryParams: {
-    connectionID: 548814,
-  },
+  connectionID: 548814,
 };
 
 sdk.connection.getNamespaces(req).then((res: GetNamespacesResponse | AxiosError) => {
@@ -53,7 +49,7 @@ sdk.connection.getNamespaces(req).then((res: GetNamespacesResponse | AxiosError)
 <!-- End SDK Example Usage -->
 
 <!-- Start SDK Available Operations -->
-## SDK Available Operations
+## Available Resources and Operations
 
 
 ### connection

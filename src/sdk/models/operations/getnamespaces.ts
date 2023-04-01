@@ -6,16 +6,11 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
-export class GetNamespacesQueryParams extends SpeakeasyBase {
+export class GetNamespacesRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({
     data: "queryParam, style=form;explode=true;name=connectionID",
   })
   connectionID: number;
-}
-
-export class GetNamespacesRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  queryParams: GetNamespacesQueryParams;
 }
 
 export class GetNamespacesResponse extends SpeakeasyBase {
