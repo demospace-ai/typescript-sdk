@@ -90,11 +90,10 @@ export class Source {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.createSource200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.CreateSource200ApplicationJSON
-              );
+            res.createSource200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.CreateSource200ApplicationJSON
+            );
           }
           break;
         case [401, 500].includes(httpRes?.status):
@@ -136,11 +135,10 @@ export class Source {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.getSources200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.GetSources200ApplicationJSON
-              );
+            res.getSources200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.GetSources200ApplicationJSON
+            );
           }
           break;
         case [401, 500].includes(httpRes?.status):

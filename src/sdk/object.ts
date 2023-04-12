@@ -90,11 +90,10 @@ export class ObjectT {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.createObject200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.CreateObject200ApplicationJSON
-              );
+            res.createObject200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.CreateObject200ApplicationJSON
+            );
           }
           break;
         case [401, 500].includes(httpRes?.status):
@@ -136,11 +135,10 @@ export class ObjectT {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.getObjects200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.GetObjects200ApplicationJSON
-              );
+            res.getObjects200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.GetObjects200ApplicationJSON
+            );
           }
           break;
         case [401, 500].includes(httpRes?.status):

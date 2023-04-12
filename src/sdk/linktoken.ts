@@ -90,7 +90,7 @@ export class LinkToken {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.createLinkTokenResponse = utils.deserializeJSONResponse(
+            res.createLinkTokenResponse = utils.objectToClass(
               httpRes?.data,
               shared.CreateLinkTokenResponse
             );

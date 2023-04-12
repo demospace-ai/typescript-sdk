@@ -72,7 +72,7 @@ export class Connection {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.namespaces = utils.deserializeJSONResponse(
+            res.namespaces = utils.objectToClass(
               httpRes?.data,
               shared.Namespaces
             );
@@ -124,11 +124,10 @@ export class Connection {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.getSchema200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.GetSchema200ApplicationJSON
-              );
+            res.getSchema200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.GetSchema200ApplicationJSON
+            );
           }
           break;
         case [401, 500].includes(httpRes?.status):
@@ -177,11 +176,10 @@ export class Connection {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.getTables200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.GetTables200ApplicationJSON
-              );
+            res.getTables200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.GetTables200ApplicationJSON
+            );
           }
           break;
         case [401, 500].includes(httpRes?.status):

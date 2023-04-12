@@ -90,11 +90,10 @@ export class Sync {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.createSync200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.CreateSync200ApplicationJSON
-              );
+            res.createSync200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.CreateSync200ApplicationJSON
+            );
           }
           break;
         case [401, 500].includes(httpRes?.status):
@@ -133,11 +132,10 @@ export class Sync {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.getSyncs200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.GetSyncs200ApplicationJSON
-              );
+            res.getSyncs200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.GetSyncs200ApplicationJSON
+            );
           }
           break;
         case [401, 500].includes(httpRes?.status):

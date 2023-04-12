@@ -227,3 +227,11 @@ Based on:
 - Speakeasy CLI 1.19.6 https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [NPM v0.13.2] https://www.npmjs.com/package/@fabra/sdk/v/0.13.2 - .
+
+## 2023-04-12 01:22:20
+### Changes
+Based on:
+- OpenAPI Doc 0.1.0 https://fabra-io.github.io/docs/openapi.yaml
+- Speakeasy CLI 1.19.7 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [NPM v0.13.3] https://www.npmjs.com/package/@fabra/sdk/v/0.13.3 - .

@@ -90,11 +90,10 @@ export class Destination {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.createDestination200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.CreateDestination200ApplicationJSON
-              );
+            res.createDestination200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.CreateDestination200ApplicationJSON
+            );
           }
           break;
         case [401, 500].includes(httpRes?.status):
@@ -136,11 +135,10 @@ export class Destination {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.getDestinations200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.GetDestinations200ApplicationJSON
-              );
+            res.getDestinations200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.GetDestinations200ApplicationJSON
+            );
           }
           break;
         case [401, 500].includes(httpRes?.status):

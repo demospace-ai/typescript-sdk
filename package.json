@@ -1,6 +1,6 @@
 {
   "name": "@fabra/sdk",
-  "version": "0.13.2",
+  "version": "0.13.3",
   "author": "fabra",
   "scripts": {
     "prepare": "tsc --build"
