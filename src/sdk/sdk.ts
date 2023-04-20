@@ -66,7 +66,7 @@ export class Fabra {
   public _securityClient: AxiosInstance;
   public _serverURL: string;
   private _language = "typescript";
-  private _sdkVersion = "0.14.2";
+  private _sdkVersion = "0.15.0";
   private _genVersion = "2.18.2";
   private _globals: any;
 
