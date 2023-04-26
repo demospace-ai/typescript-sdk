@@ -60,4 +60,11 @@ src/sdk/models/shared/fieldmapping.ts
 src/sdk/models/shared/syncinput.ts
 src/sdk/models/shared/security.ts
 src/sdk/models/shared/index.ts
+docs/fabra/README.md
+docs/connection/README.md
+docs/destination/README.md
+docs/linktoken/README.md
+docs/object/README.md
+docs/source/README.md
+docs/sync/README.md
 USAGE.md
