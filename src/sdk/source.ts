@@ -37,7 +37,7 @@ export class Source {
   /**
    * Create a new source
    */
-  createSource(
+  async createSource(
     req: shared.SourceInput,
     config?: AxiosRequestConfig
   ): Promise<operations.CreateSourceResponse> {
@@ -68,7 +68,8 @@ export class Source {
     if (reqBody == null || Object.keys(reqBody).length === 0)
       throw new Error("request body is required");
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url,
       method: "post",
       headers: headers,
@@ -76,38 +77,38 @@ export class Source {
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.CreateSourceResponse =
-        new operations.CreateSourceResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.createSource200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.CreateSource200ApplicationJSON
-            );
-          }
-          break;
-        case [401, 500].includes(httpRes?.status):
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.CreateSourceResponse =
+      new operations.CreateSourceResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.createSource200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.CreateSource200ApplicationJSON
+          );
+        }
+        break;
+      case [401, 500].includes(httpRes?.status):
+        break;
+    }
+
+    return res;
   }
 
   /**
    * Get all sources
    */
-  getSources(
+  async getSources(
     config?: AxiosRequestConfig
   ): Promise<operations.GetSourcesResponse> {
     const baseURL: string = this._serverURL;
@@ -115,37 +116,38 @@ export class Source {
 
     const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url,
       method: "get",
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.GetSourcesResponse =
-        new operations.GetSourcesResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.getSources200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.GetSources200ApplicationJSON
-            );
-          }
-          break;
-        case [401, 500].includes(httpRes?.status):
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.GetSourcesResponse =
+      new operations.GetSourcesResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.getSources200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.GetSources200ApplicationJSON
+          );
+        }
+        break;
+      case [401, 500].includes(httpRes?.status):
+        break;
+    }
+
+    return res;
   }
 }

@@ -17,9 +17,8 @@ Create a new object
 
 ```typescript
 import { Fabra } from "@fabra/sdk";
-import { CreateObjectResponse, ObjectInput } from "@fabra/sdk/dist/sdk/models/operations";
+import { CreateObjectResponse } from "@fabra/sdk/dist/sdk/models/operations";
 import { FieldTypeEnum } from "@fabra/sdk/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Fabra({
   security: {
@@ -27,7 +26,7 @@ const sdk = new Fabra({
   },
 });
 
-const req: shared.ObjectInput = {
+sdk.object.createObject({
   destinationId: 2,
   displayName: "BigQuery",
   endCustomerIdField: "end_customer_id",
@@ -43,10 +42,8 @@ const req: shared.ObjectInput = {
     },
   ],
   tableName: "events",
-};
-
-sdk.object.createObject(req).then((res: CreateObjectResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: CreateObjectResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -62,7 +59,6 @@ Get all objects
 import { Fabra } from "@fabra/sdk";
 import { GetObjectsResponse } from "@fabra/sdk/dist/sdk/models/operations";
 import { FieldTypeEnum } from "@fabra/sdk/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Fabra({
   security: {
@@ -70,8 +66,8 @@ const sdk = new Fabra({
   },
 });
 
-sdk.object.getObjects().then((res: GetObjectsResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+sdk.object.getObjects().then((res: GetObjectsResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });

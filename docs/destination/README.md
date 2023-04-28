@@ -17,9 +17,8 @@ Create a new destination
 
 ```typescript
 import { Fabra } from "@fabra/sdk";
-import { CreateDestinationResponse, DestinationInput } from "@fabra/sdk/dist/sdk/models/operations";
+import { CreateDestinationResponse } from "@fabra/sdk/dist/sdk/models/operations";
 import { ConnectionTypeEnum } from "@fabra/sdk/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Fabra({
   security: {
@@ -27,7 +26,7 @@ const sdk = new Fabra({
   },
 });
 
-const req: shared.DestinationInput = {
+sdk.destination.createDestination({
   bigqueryConfig: {
     credentials: "Paste JSON from GCP",
     location: "us-west1",
@@ -55,10 +54,8 @@ const req: shared.DestinationInput = {
     username: "jane_doe",
     warehouseName: "your_warehouse",
   },
-};
-
-sdk.destination.createDestination(req).then((res: CreateDestinationResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: CreateDestinationResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -74,7 +71,6 @@ Get all destinations
 import { Fabra } from "@fabra/sdk";
 import { GetDestinationsResponse } from "@fabra/sdk/dist/sdk/models/operations";
 import { ConnectionTypeEnum } from "@fabra/sdk/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Fabra({
   security: {
@@ -82,8 +78,8 @@ const sdk = new Fabra({
   },
 });
 
-sdk.destination.getDestinations().then((res: GetDestinationsResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+sdk.destination.getDestinations().then((res: GetDestinationsResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });

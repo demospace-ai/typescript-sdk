@@ -37,7 +37,7 @@ export class LinkToken {
   /**
    * Create a new link token
    */
-  createLinkToken(
+  async createLinkToken(
     req: shared.CreateLinkTokenRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.CreateLinkTokenResponse> {
@@ -68,7 +68,8 @@ export class LinkToken {
     if (reqBody == null || Object.keys(reqBody).length === 0)
       throw new Error("request body is required");
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url,
       method: "post",
       headers: headers,
@@ -76,31 +77,31 @@ export class LinkToken {
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.CreateLinkTokenResponse =
-        new operations.CreateLinkTokenResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.createLinkTokenResponse = utils.objectToClass(
-              httpRes?.data,
-              shared.CreateLinkTokenResponse
-            );
-          }
-          break;
-        case [401, 500].includes(httpRes?.status):
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.CreateLinkTokenResponse =
+      new operations.CreateLinkTokenResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.createLinkTokenResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.CreateLinkTokenResponse
+          );
+        }
+        break;
+      case [401, 500].includes(httpRes?.status):
+        break;
+    }
+
+    return res;
   }
 }

@@ -16,8 +16,7 @@ Create a new link token
 
 ```typescript
 import { Fabra } from "@fabra/sdk";
-import { CreateLinkTokenRequest, CreateLinkTokenResponse } from "@fabra/sdk/dist/sdk/models/operations";
-import { AxiosError } from "axios";
+import { CreateLinkTokenResponse } from "@fabra/sdk/dist/sdk/models/operations";
 
 const sdk = new Fabra({
   security: {
@@ -25,12 +24,10 @@ const sdk = new Fabra({
   },
 });
 
-const req: shared.CreateLinkTokenRequest = {
+sdk.linkToken.createLinkToken({
   endCustomerId: "123",
-};
-
-sdk.linkToken.createLinkToken(req).then((res: CreateLinkTokenResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: CreateLinkTokenResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });

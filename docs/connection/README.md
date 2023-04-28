@@ -18,8 +18,7 @@ Get all namespaces
 
 ```typescript
 import { Fabra } from "@fabra/sdk";
-import { GetNamespacesRequest, GetNamespacesResponse } from "@fabra/sdk/dist/sdk/models/operations";
-import { AxiosError } from "axios";
+import { GetNamespacesResponse } from "@fabra/sdk/dist/sdk/models/operations";
 
 const sdk = new Fabra({
   security: {
@@ -27,12 +26,10 @@ const sdk = new Fabra({
   },
 });
 
-const req: GetNamespacesRequest = {
+sdk.connection.getNamespaces({
   connectionID: 592845,
-};
-
-sdk.connection.getNamespaces(req).then((res: GetNamespacesResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: GetNamespacesResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -46,9 +43,8 @@ Get schema for table
 
 ```typescript
 import { Fabra } from "@fabra/sdk";
-import { GetSchemaRequest, GetSchemaResponse } from "@fabra/sdk/dist/sdk/models/operations";
+import { GetSchemaResponse } from "@fabra/sdk/dist/sdk/models/operations";
 import { FieldTypeEnum } from "@fabra/sdk/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Fabra({
   security: {
@@ -56,14 +52,12 @@ const sdk = new Fabra({
   },
 });
 
-const req: GetSchemaRequest = {
+sdk.connection.getSchema({
   connectionID: 715190,
   namespace: "quibusdam",
   tableName: "unde",
-};
-
-sdk.connection.getSchema(req).then((res: GetSchemaResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: GetSchemaResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -77,8 +71,7 @@ Get all tables
 
 ```typescript
 import { Fabra } from "@fabra/sdk";
-import { GetTablesRequest, GetTablesResponse } from "@fabra/sdk/dist/sdk/models/operations";
-import { AxiosError } from "axios";
+import { GetTablesResponse } from "@fabra/sdk/dist/sdk/models/operations";
 
 const sdk = new Fabra({
   security: {
@@ -86,13 +79,11 @@ const sdk = new Fabra({
   },
 });
 
-const req: GetTablesRequest = {
+sdk.connection.getTables({
   connectionID: 857946,
   namespace: "corrupti",
-};
-
-sdk.connection.getTables(req).then((res: GetTablesResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: GetTablesResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });

@@ -17,9 +17,8 @@ Create a new sync
 
 ```typescript
 import { Fabra } from "@fabra/sdk";
-import { CreateSyncResponse, SyncInput } from "@fabra/sdk/dist/sdk/models/operations";
+import { CreateSyncResponse } from "@fabra/sdk/dist/sdk/models/operations";
 import { FrequencyUnitsEnum } from "@fabra/sdk/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Fabra({
   security: {
@@ -27,7 +26,7 @@ const sdk = new Fabra({
   },
 });
 
-const req: shared.SyncInput = {
+sdk.sync.createSync({
   cursorField: "updated_at",
   customJoin: "select * from events join additional_properties on events.id = additional_properties.event_id;",
   destinationId: 2,
@@ -49,10 +48,8 @@ const req: shared.SyncInput = {
   primaryKey: "event_id",
   sourceId: 1,
   tableName: "end_customer_events",
-};
-
-sdk.sync.createSync(req).then((res: CreateSyncResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: CreateSyncResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -68,7 +65,6 @@ Get all syncs
 import { Fabra } from "@fabra/sdk";
 import { GetSyncsResponse } from "@fabra/sdk/dist/sdk/models/operations";
 import { FrequencyUnitsEnum } from "@fabra/sdk/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Fabra({
   security: {
@@ -76,8 +72,8 @@ const sdk = new Fabra({
   },
 });
 
-sdk.sync.getSyncs().then((res: GetSyncsResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+sdk.sync.getSyncs().then((res: GetSyncsResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });

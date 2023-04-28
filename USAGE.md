@@ -1,8 +1,7 @@
 <!-- Start SDK Example Usage -->
 ```typescript
 import { Fabra } from "@fabra/sdk";
-import { GetNamespacesRequest, GetNamespacesResponse } from "@fabra/sdk/dist/sdk/models/operations";
-import { AxiosError } from "axios";
+import { GetNamespacesResponse } from "@fabra/sdk/dist/sdk/models/operations";
 
 const sdk = new Fabra({
   security: {
@@ -10,12 +9,10 @@ const sdk = new Fabra({
   },
 });
 
-const req: GetNamespacesRequest = {
+sdk.connection.getNamespaces({
   connectionID: 548814,
-};
-
-sdk.connection.getNamespaces(req).then((res: GetNamespacesResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: GetNamespacesResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });

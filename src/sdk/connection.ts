@@ -37,7 +37,7 @@ export class Connection {
   /**
    * Get all namespaces
    */
-  getNamespaces(
+  async getNamespaces(
     req: operations.GetNamespacesRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.GetNamespacesResponse> {
@@ -52,44 +52,45 @@ export class Connection {
 
     const queryParams: string = utils.serializeQueryParams(req);
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "get",
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.GetNamespacesResponse =
-        new operations.GetNamespacesResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.namespaces = utils.objectToClass(
-              httpRes?.data,
-              shared.Namespaces
-            );
-          }
-          break;
-        case [401, 500].includes(httpRes?.status):
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.GetNamespacesResponse =
+      new operations.GetNamespacesResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.namespaces = utils.objectToClass(
+            httpRes?.data,
+            shared.Namespaces
+          );
+        }
+        break;
+      case [401, 500].includes(httpRes?.status):
+        break;
+    }
+
+    return res;
   }
 
   /**
    * Get schema for table
    */
-  getSchema(
+  async getSchema(
     req: operations.GetSchemaRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.GetSchemaResponse> {
@@ -104,44 +105,44 @@ export class Connection {
 
     const queryParams: string = utils.serializeQueryParams(req);
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "get",
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.GetSchemaResponse =
-        new operations.GetSchemaResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.getSchema200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.GetSchema200ApplicationJSON
-            );
-          }
-          break;
-        case [401, 500].includes(httpRes?.status):
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
+    const res: operations.GetSchemaResponse = new operations.GetSchemaResponse({
+      statusCode: httpRes.status,
+      contentType: contentType,
+      rawResponse: httpRes,
     });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.getSchema200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.GetSchema200ApplicationJSON
+          );
+        }
+        break;
+      case [401, 500].includes(httpRes?.status):
+        break;
+    }
+
+    return res;
   }
 
   /**
    * Get all tables
    */
-  getTables(
+  async getTables(
     req: operations.GetTablesRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.GetTablesResponse> {
@@ -156,37 +157,37 @@ export class Connection {
 
     const queryParams: string = utils.serializeQueryParams(req);
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "get",
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.GetTablesResponse =
-        new operations.GetTablesResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.getTables200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.GetTables200ApplicationJSON
-            );
-          }
-          break;
-        case [401, 500].includes(httpRes?.status):
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
+    const res: operations.GetTablesResponse = new operations.GetTablesResponse({
+      statusCode: httpRes.status,
+      contentType: contentType,
+      rawResponse: httpRes,
     });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.getTables200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.GetTables200ApplicationJSON
+          );
+        }
+        break;
+      case [401, 500].includes(httpRes?.status):
+        break;
+    }
+
+    return res;
   }
 }

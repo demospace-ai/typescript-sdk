@@ -17,9 +17,8 @@ Create a new source
 
 ```typescript
 import { Fabra } from "@fabra/sdk";
-import { CreateSourceResponse, SourceInput } from "@fabra/sdk/dist/sdk/models/operations";
+import { CreateSourceResponse } from "@fabra/sdk/dist/sdk/models/operations";
 import { ConnectionTypeEnum } from "@fabra/sdk/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Fabra({
   security: {
@@ -27,7 +26,7 @@ const sdk = new Fabra({
   },
 });
 
-const req: shared.SourceInput = {
+sdk.source.createSource({
   bigqueryConfig: {
     credentials: "Paste JSON from GCP",
     location: "us-west1",
@@ -56,10 +55,8 @@ const req: shared.SourceInput = {
     username: "jane_doe",
     warehouseName: "your_warehouse",
   },
-};
-
-sdk.source.createSource(req).then((res: CreateSourceResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: CreateSourceResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -75,7 +72,6 @@ Get all sources
 import { Fabra } from "@fabra/sdk";
 import { GetSourcesResponse } from "@fabra/sdk/dist/sdk/models/operations";
 import { ConnectionTypeEnum } from "@fabra/sdk/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Fabra({
   security: {
@@ -83,8 +79,8 @@ const sdk = new Fabra({
   },
 });
 
-sdk.source.getSources().then((res: GetSourcesResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+sdk.source.getSources().then((res: GetSourcesResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
