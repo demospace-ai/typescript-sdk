@@ -2,12 +2,12 @@ configVersion: 1.0.0
 management:
   docChecksum: d016ae393133ddf484189d664481ef5c
   docVersion: 0.1.0
-  speakeasyVersion: 1.26.2
+  speakeasyVersion: 1.26.4
 generation:
   telemetryEnabled: false
   sdkClassName: fabra
   sdkFlattening: false
 typescript:
-  version: 0.19.0
+  version: 0.19.1
   author: fabra
   packageName: '@fabra/sdk'
