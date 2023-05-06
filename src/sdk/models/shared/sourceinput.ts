@@ -26,7 +26,7 @@ export class SourceInput extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "end_customer_id" })
-  endCustomerId: number;
+  endCustomerId: string;
 
   @SpeakeasyMetadata()
   @Expose({ name: "mongodb_config" })

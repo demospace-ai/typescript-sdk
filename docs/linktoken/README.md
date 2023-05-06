@@ -25,7 +25,7 @@ const sdk = new Fabra({
 });
 
 sdk.linkToken.createLinkToken({
-  endCustomerId: "123",
+  endCustomerId: "abcd-1234-efgh-5678",
 }).then((res: CreateLinkTokenResponse) => {
   if (res.statusCode == 200) {
     // handle response

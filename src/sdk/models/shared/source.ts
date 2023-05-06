@@ -18,7 +18,7 @@ export class Source extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "end_customer_id" })
-  endCustomerId?: number;
+  endCustomerId?: string;
 
   @SpeakeasyMetadata()
   @Expose({ name: "id" })

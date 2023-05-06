@@ -33,7 +33,7 @@ sdk.source.createSource({
   },
   connectionType: ConnectionTypeEnum.Bigquery,
   displayName: "Frontend Events",
-  endCustomerId: 123,
+  endCustomerId: "abcd-1234-efgh-5678",
   mongodbConfig: {
     connectionOptions: "retryWrites=true&w=majority",
     host: "examplecluster.abc123.mongodb.net",
