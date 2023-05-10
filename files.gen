@@ -5,6 +5,7 @@ src/sdk/object.ts
 src/sdk/source.ts
 src/sdk/sync.ts
 src/sdk/sdk.ts
+.eslintrc.yml
 jest.config.js
 package-lock.json
 package.json
@@ -19,6 +20,8 @@ src/internal/utils/retries.ts
 src/internal/utils/security.ts
 src/internal/utils/utils.ts
 src/sdk/index.ts
+src/sdk/types/index.ts
+src/sdk/types/rfcdate.ts
 tsconfig.json
 src/sdk/models/operations/getnamespaces.ts
 src/sdk/models/operations/getschema.ts
@@ -33,7 +36,8 @@ src/sdk/models/operations/getsources.ts
 src/sdk/models/operations/createsync.ts
 src/sdk/models/operations/getsyncs.ts
 src/sdk/models/operations/index.ts
-src/sdk/models/shared/columnschema.ts
+src/sdk/models/shared/namespaces.ts
+src/sdk/models/shared/field.ts
 src/sdk/models/shared/fieldtypeenum.ts
 src/sdk/models/shared/destination.ts
 src/sdk/models/shared/connection.ts
@@ -56,4 +60,11 @@ src/sdk/models/shared/fieldmapping.ts
 src/sdk/models/shared/syncinput.ts
 src/sdk/models/shared/security.ts
 src/sdk/models/shared/index.ts
+docs/fabra/README.md
+docs/connection/README.md
+docs/destination/README.md
+docs/linktoken/README.md
+docs/object/README.md
+docs/source/README.md
+docs/sync/README.md
 USAGE.md

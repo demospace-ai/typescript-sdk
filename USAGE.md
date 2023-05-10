@@ -1,29 +1,20 @@
 <!-- Start SDK Example Usage -->
 ```typescript
-import {
-  GetNamespacesRequest,
-  GetNamespacesResponse 
-} from "@fabra/sdk/dist/sdk/models/operations";
-
-import { AxiosError } from "axios";
 import { Fabra } from "@fabra/sdk";
+import { GetNamespacesResponse } from "@fabra/sdk/dist/sdk/models/operations";
 
 const sdk = new Fabra({
   security: {
-    apiKeyAuth: {
-      apiKey: "YOUR_API_KEY_HERE",
-    },
-  }
-});
-    
-const req: GetNamespacesRequest = {
-  queryParams: {
-    connectionID: 548814,
+    apiKeyAuth: "YOUR_API_KEY_HERE",
   },
-};
+});
 
-sdk.connection.getNamespaces(req).then((res: GetNamespacesResponse | AxiosError) => {
-   // handle response
+sdk.connection.getNamespaces({
+  connectionID: 548814,
+}).then((res: GetNamespacesResponse) => {
+  if (res.statusCode == 200) {
+    // handle response
+  }
 });
 ```
 <!-- End SDK Example Usage -->
